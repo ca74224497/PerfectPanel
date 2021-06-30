@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^api/v1(.*)$ /$1 [L,NC]

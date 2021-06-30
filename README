@@ -1,0 +1,45 @@
+ЗАДАНИЕ # 1:
+
+Данный запрос вернет все необходимые данные:
+
+SELECT
+    u.id AS `ID`,
+    CONCAT(u.first_name, ' ', u.last_name) AS `Name`,
+    b.author AS `Author`,
+    GROUP_CONCAT(DISTINCT b.name SEPARATOR ', ') AS `Books`
+FROM `users` AS u
+LEFT JOIN `user_books` AS ub
+    ON u.id = ub.user_id
+LEFT JOIN `books` AS b
+    ON ub.book_id = b.id
+WHERE
+    u.age BETWEEN 7 AND 17
+GROUP BY
+    b.author, u.id
+HAVING
+    COUNT(*) = 2
+ORDER BY
+    b.author ASC
+
+В папке "Misc" лежит схема БД (schema.sql), а так же скриншот выполнения запроса (query-result.png).
+
+ЗАДАНИЕ # 2:
+
+Задание написано на чистом PHP 8.0 (необходимо поставить эту версию, в предыдущих работать не будет, ибо используются новые возможности языка).
+Web-сервер - Apache/2.4.41 (Ubuntu).
+
+Необходимо создать виртуальный хост, закинуть все файлы с репозитория (кроме папки Misc и файла README).
+Для web-сервера нужно включить модуль "mod_rewrite" командой "sudo a2enmod rewrite", чтобы работал адрес "<your_domain>/api/v1?method=...".
+
+Если используется nginx, то проделать все вышеописанные операции для него (согласно документации).
+
+Входная точка приложения: index.php.
+
+Перед началом использования приложения нужно получить токен авторизации с помомощью запроса: <your_domain>/api/v1?method=token,
+затем использовать полученный токен для всех приватных методов (rates, convert).
+
+В файле "Misc/env.html" лежит вывод команды "phpinfo" (поможет для настройки среды).
+
+Пример работы приложения - "https://www.youtube.com/watch?v=nqBSeOo_PSw" (в папке "Misc" файл "test.mp4").
+
+Если будут какие-то вопросы, то с радостью на них отвечу. Заранее благодарю.
