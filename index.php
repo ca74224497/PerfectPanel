@@ -16,20 +16,20 @@ header(header: 'Content-type: application/json; charset=utf-8');
 // Импорт классов приложения
 // (для автоматической загрузки можно использотвать "spl_autoload_register" или Composer + PSR-4).
 require_once 'App.php';
-require_once 'Components/Response.php';
-require_once 'Components/HttpCodes.php';
-require_once 'Components/Auth.php';
-require_once 'Components/CurrencyApi.php';
-require_once 'Components/RemoteQuery.php';
+require_once 'Response/Response.php';
+require_once 'Request/RemoteQuery.php';
+require_once 'Utils/HttpCodes.php';
+require_once 'Api/CurrencyApi.php';
+require_once 'Api/CurrencyApiDecorator.php';
+require_once 'Api/CurrencyApiCommission.php';
 
-use App\Components\HttpCodes;
 use App\RequestHandler;
-use App\Components\Response;
+use App\Response\Response;
+use App\Utils\HttpCodes;
 
 try {
     // Запуск обработчика запросов.
     (new RequestHandler())->init();
-
 } catch (Throwable $t) {
     $message = $t->getMessage();
     $code = $t->getCode() ? $t->getCode() : HttpCodes::HTTP_BAD_REQUEST;

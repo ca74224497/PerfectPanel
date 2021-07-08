@@ -1,11 +1,13 @@
 <?php
-namespace App\Components;
+
+namespace App\Response;
 
 use JetBrains\PhpStorm\NoReturn;
+use App\Utils\HttpCodes;
 
 /**
  * Class Response
- * @package App\Components
+ * @package App\Response
  */
 class Response
 {
@@ -17,7 +19,11 @@ class Response
      * @return void
      */
     #[NoReturn]
-    public static function send(string|array $payload, string $type = 'success', int $httpCode = HttpCodes::HTTP_OK): void {
+    public static function send(
+        string|array $payload,
+        string $type = 'success',
+        int $httpCode = HttpCodes::HTTP_OK
+    ): void {
         http_response_code(response_code: $httpCode);
 
         $response = [

@@ -1,11 +1,13 @@
 <?php
-namespace App\Components;
+
+namespace App\Request;
 
 use ErrorException;
+use App\Utils\HttpCodes;
 
 /**
  * Class RemoteQuery
- * @package App\Components
+ * @package App\Request
  */
 class RemoteQuery
 {
@@ -15,7 +17,8 @@ class RemoteQuery
      * @return array
      * @throws ErrorException
      */
-    public static function getJson(string $url = ''): array {
+    public static function getJson(string $url = ''): array
+    {
         $result = file_get_contents(filename: $url);
 
         if (!is_string($result)) {
