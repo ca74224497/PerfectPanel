@@ -5,7 +5,6 @@
 
 // Выключение отображения ошибок.
 error_reporting(error_level: 0);
-ini_set(option: 'display_errors', value: 0);
 
 // Кодировка + тип отдаваемного документа (JSON).
 header(header: 'Content-type: application/json; charset=utf-8');
