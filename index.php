@@ -7,9 +7,6 @@
 error_reporting(error_level: 0);
 ini_set(option: 'display_errors', value: 0);
 
-// Включение поддержки оберток URL.
-ini_set(option: 'allow_url_fopen', value: 1);
-
 // Кодировка + тип отдаваемного документа (JSON).
 header(header: 'Content-type: application/json; charset=utf-8');
 
