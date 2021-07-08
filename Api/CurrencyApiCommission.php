@@ -2,6 +2,9 @@
 
 namespace App\Api;
 
+use ErrorException;
+use App\Utils\HttpCodes;
+
 /**
  * Class CurrencyApiCommission Добавление комиссии методам API.
  * @package App\Api
@@ -68,7 +71,7 @@ class CurrencyApiCommission extends CurrencyApiDecorator
         );
 
         // @todo: Уточнить нужно ли проверять минимальный объем валюты после комиссии?
-        /*if (bccomp(
+        if ($currency_from === 'BTC' && bccomp(
                 num1: $data['converted_value'],
                 num2: '0.01',
                 scale: 3
@@ -77,7 +80,7 @@ class CurrencyApiCommission extends CurrencyApiDecorator
                 'Currency volume after commission must be >= 0.01',
                 HttpCodes::HTTP_BAD_REQUEST
             );
-        }*/
+        }
 
         return $data;
     }
